@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/User/login.css' %}">
+</head>
+<body>
+  <img class="fondo" src="{% static 'img/Fondo_inicio.jpg' %}" alt="">
+  <div class="sesion">
+    <img class="icono_gramon" src="{% static 'img\logo-gramon.png' %}" alt="GRAMON">
+    <main class="form-signin w-100 m-auto text-center">
+      {% if error %}
+          <div class="alert alert-danger">{{ error }}</div>
+      {% endif %}
+  
+      <form method="post">
+          {% csrf_token %}
+          <h3>¡Bienvenido!</h3>
+  
+          <div>
+              <label for="username" class="form-label">Usuario:</label>
+              <input type="text" id="username" name="username" class="form-control" required>
+          </div>
+  
+          <div>
+              <label for="password" class="form-label">Contraseña:</label>
+              <input type="password" id="password" name="password" class="form-control" required>
+          </div>
+  
+          <button type="submit" class="btn btn-success btn_ingresar mt-3">Ingresar</button>
+      </form>
+  </main>
+  
+  </div>
+</body> 
+</html>

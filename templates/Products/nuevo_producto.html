@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <title>Registrar Producto</title>
+    <link rel="stylesheet" href="{% static 'css/Product/nuevo_producto.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="max-width: 900px;">
+
+
+    <h2 class="text-center">Registrar Nuevo Producto</h2>
+
+    <form class="card p-4" id="product_form" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre del Producto</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Ej: Butifarra" required>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="sku" class="form-label">SKU</label>
+                <input type="text" class="form-control" id="sku" placeholder="Código SKU">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="codigo_barras" class="form-label">Código de Barras</label>
+                <input type="text" class="form-control" id="codigo_barras" placeholder="Código de Barras">
+            </div>
+        </div>
+    
+        <div class="mb-3">
+            <label for="imagen" class="form-label">Imagen del Producto</label>
+            <input type="file" class="form-control" id="imagen" accept="image/*">
+        </div>
+    
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="precio_base" class="form-label">Precio Base</label>
+                <input type="number" class="form-control" id="precio_base" placeholder="Ej: 5000" min="0" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="precio_publico" class="form-label">Precio Público</label>
+                <input type="number" class="form-control" id="precio_publico" placeholder="Ej: 8000" min="0" required>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="cantidad" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" id="cantidad" placeholder="Ej: 50" min="0">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="stock_minimo" class="form-label">Stock Mínimo</label>
+                <input type="number" class="form-control" id="stock_minimo" placeholder="Ej: 10" min="0">
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="categoria" class="form-label">Categoría</label>
+                <select class="form-select" id="categoria" required>
+                    <!-- Opciones cargadas vía AJAX -->
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="proveedor" class="form-label">Proveedor</label>
+                <select class="form-select" id="proveedor" required>
+                    <!-- Opciones cargadas vía AJAX -->
+                </select>
+            </div>
+        </div>
+    
+        <div class="mb-3">
+            <label for="fecha_vencimiento" class="form-label">Fecha de Vencimiento</label>
+            <input type="date" class="form-control" id="fecha_vencimiento">
+        </div>
+    
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="unidad_medida" class="form-label">Unidad de Medida</label>
+                <select class="form-select" id="unidad_medida" required>
+                    <option value="" disabled selected>Seleccione una unidad</option>
+                    <option value="unidad">Unidad</option>
+                    <option value="kg">Kilogramos</option>
+                    <option value="lt">Litros</option>
+                    <option value="gr">Gramos</option>
+                    <!-- Agrega más según tu modelo -->
+                </select>
+            </div>
+    
+            <div class="col-md-6 mb-3">
+                <label for="control_stock" class="form-label">Controlar Stock</label>
+                <select class="form-select" id="control_stock" required>
+                    <option value="" disabled selected>¿Controlar stock?</option>
+                    <option value="true">Sí</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="impuesto" class="form-label">Impuesto (%)</label>
+                <input type="number" class="form-control" id="impuesto" placeholder="Ej: 5.00" step="0.01" min="0">
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="descuento" class="form-label">Descuento (%)</label>
+                <input type="number" class="form-control" id="descuento" placeholder="Ej: 10.00" step="0.01" min="0">
+            </div>
+        </div>
+    
+        <div class="mb-3">
+            <label for="estado" class="form-label">Estado del Producto</label>
+            <select class="form-select" id="estado" required>
+                <option value="" disabled selected>Seleccione un estado</option>
+                <option value="activo">Activo</option>
+                <option value="agotado">Agotado</option>
+                <option value="descontinuado">Descontinuado</option>
+            </select>
+        </div>
+    
+        <div class="mb-3">
+            <label for="motivo_actualizacion" class="form-label">Motivo de la Actualización</label>
+            <textarea class="form-control" id="motivo_actualizacion" placeholder="Motivo del cambio en el producto..." rows="2"></textarea>
+        </div>
+    
+        <div class="text-center">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-save"></i> Registrar Producto
+            </button>
+        </div>
+    </form>
+    
+</div>
+{% endblock content %}
+
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'js/Product/nuevo_producto.js' %}"></script>
+{% endblock script %}

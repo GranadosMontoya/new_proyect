@@ -1,0 +1,202 @@
+{% load static %}
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Explora nuestra plataforma web moderna y eficiente, diseñada para ofrecerte una experiencia de usuario intuitiva y atractiva. Con características innovadoras y un diseño responsivo, te garantizamos una navegación fluida en cualquier dispositivo.">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.122.0">
+    <title>Gramon</title>
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/introduction/home_introduction.css' %}">
+    <link rel="stylesheet" href="{% static 'css/introduction/carousel.css' %}">
+    <!-- Agregar Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <!-- Fuentes de google -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    {% for cover in covers %}
+    <header>
+        <nav class="_navbar navbar navbar-expand-md navbar-dark fixed-top">
+            <div class="container-fluid collapse navbar-collapse" id="navbarCollapse">
+                <nav class="navbar bg-transparent px-3">
+                    <a href="javascript:void(0)" onclick="window.location.reload();">
+                        {% if cover.logo %}
+                        <img src="{{ cover.logo.url }}" alt="Logo" width="{{cover.width}}" height="{{cover.height}}">
+                        {% else %}
+                        <img src="{% static 'img/icon-gramon.png' %}" alt="Logo" width="165" height="55">
+                        {% endif %}
+                    </a>
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0 nav nav-pills d-none d-md-flex">
+                        {% if cover.title1 %}
+                        <li class="nav-item">
+                            <a class="nav-link rounded-pill px-3 py-2" href="#{{ cover.title1 }}">{{ cover.title1 }}</a>
+                        </li>
+                        {% endif %}
+                        {% if cover.title2 %}
+                        <li class="nav-item">
+                            <a class="nav-link rounded-pill px-3 py-2" href="#{{ cover.title2 }}">{{ cover.title2 }}</a>
+                        </li>
+                        {% endif %}
+                        {% if cover.title3 %}
+                        <li class="nav-item">
+                            <a class="nav-link rounded-pill px-3 py-2" href="#{{ cover.title3 }}">{{ cover.title3 }}</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="{% url 'User_app:login' %}" class="btn btn-success btn-login">
+                        <i class="bi bi-person-circle me-2"></i> Iniciar sesión
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active"
+                    style="background-image: url('{% if cover.carousel_image_1 %}{{ cover.carousel_image_1.url }}{% else %}{{ cover.imag_default.url}}{% endif %}');background-size: cover; background-position: center;">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
+                    </svg>
+                    <div class="container">
+                        <div class="carousel-caption text-start">
+                            <h1>{{cover.carousel_image_1_title}}</h1>
+                            <p class="opacity-75">{{cover.carousel_image_1_text}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item"
+                    style="background-image: url('{% if cover.carousel_image_1 %}{{ cover.carousel_image_2.url }}{% else %}{{ cover.imag_default.url}}{% endif %}'); background-size: cover; background-position: center;">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
+                    </svg>
+                    <div class="container">
+                        <div class="carousel-caption">
+                            <h1>{{cover.carousel_image_2_title}}</h1>
+                            <p>{{cover.carousel_image_2_text}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item"
+                    style="background-image: url('{% if cover.carousel_image_1 %}{{ cover.carousel_image_3.url }}{% else %}{{ cover.imag_default.url}}{% endif %}'); background-size: cover; background-position: center;">
+                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
+                    </svg>
+                    <div class="container">
+                        <div class="carousel-caption text-end">
+                            <h1>{{cover.carousel_image_3_title}}</h1>
+                            <p>{{cover.carousel_image_3_text}}</p>
+                            <p><a class="btn btn-outline-success" href="#">{{cover.carousel_3_boton}}</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <div data-bs-spy="scroll" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true"
+            class="scrollspy-example bg-body-tertiary p-3 rounded-2 container marketing" tabindex="0">
+            <div class="row" id="{{cover.title1}}" style="padding-top: 10%;">
+                <div class="col-lg-4 text-center">
+                    <img src="{% if cover.tarjeta_1_imagen %}{{ cover.tarjeta_1_imagen.url}}{% else %}{{ cover.imag_default.url}}{% endif %}" class="rounded-circle img-fluid" width="140" height="140"alt="Imagen">
+                    <p>{{cover.text1}}</p>
+                </div>
+
+                <div class="col-lg-4 text-center">
+                    <img src="{% if cover.tarjeta_2_imagen %}{{ cover.tarjeta_2_imagen.url}}{% else %}{{ cover.imag_default.url}}{% endif %}" class="rounded-circle img-fluid" width="140" height="140"alt="Imagen">
+                    <p>{{cover.text2}}</p>
+                </div>
+
+                <div class="col-lg-4 text-center">
+                    <img src="{% if cover.tarjeta_3_imagen %}{{ cover.tarjeta_3_imagen.url}}{% else %}{{ cover.imag_default.url}}{% endif %}" class="rounded-circle img-fluid" width="140" height="140"alt="Imagen">
+                    <p>{{cover.text3}}</p>
+                </div>
+            </div>
+
+
+            <!-- START THE FEATURETTES -->
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading fw-normal lh-1">{{cover.presentation1_text_primary}}<span
+                            class="text-body-secondary">{{cover.presentation1_text_secundary}}</span></h2>
+                    <p class="lead">{{cover.presentation1_text}}</p>
+                </div>
+                <div class="col-md-5">
+                    <img src="{% if cover.presentation1_image %}{{cover.presentation1_image.url}}{% else %}{{ cover.imag_default.url}}{% endif %}" class="featurette-image img-fluid mx-auto rounded shadow"
+                        width="500" height="500" alt="Descripción de la imagen">
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7 order-md-2">
+                    <h2 class="featurette-heading fw-normal lh-1">{{cover.presentation2_text_primary}}<span
+                            class="text-body-secondary">{{cover.presentation2_text_secundary}}</span></h2>
+                    <p class="lead">{{cover.presentation2_text}}</p>
+                </div>
+                <div class="col-md-5 order-md-1">
+                    <img src="{% if cover.presentation2_image %}{{cover.presentation2_image.url}}{% else %}{{ cover.imag_default.url}}{% endif %}" class="featurette-image img-fluid mx-auto rounded shadow"
+                        width="500" height="500" alt="Descripción de la imagen">
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading fw-normal lh-1">{{cover.presentation3_text_primary}}<span
+                            class="text-body-secondary">{{cover.presentation3_text_secundary}}</span></h2>
+                    <p class="lead">{{cover.presentation3_text}}</p>
+                </div>
+                <div class="col-md-5">
+                    <img src="{% if cover.presentation3_image %}{{ cover.presentation3_image.url}}{% else %}{{ cover.imag_default.url}}{% endif %}" class="featurette-image img-fluid mx-auto rounded shadow"
+                        width="500" height="500" alt="Descripción de la imagen">
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="container">
+            <p class="float-end"><a href="#">Back to top</a></p>
+            <p>&copy; 2025 Gramon, Inc. &middot;
+        </footer>
+    </main>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    {% endfor %}
+</body>
+
+</html>

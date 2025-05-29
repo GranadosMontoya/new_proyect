@@ -1,0 +1,49 @@
+#header_panel_de_control {
+    background-color: #FFFFFF; /* Blanco para un fondo limpio y profesional */
+    color: #333333; /* Texto en gris oscuro para un buen contraste */
+    padding: 20px; /* Padding adecuado para espaciado */
+    box-shadow: 0 10px 10px rgba(0.1, 0, 0, 0.1); /* Sombra sutil para profundidad */
+    margin: 15px;
+}
+
+#header_panel_de_control_text{
+    font-size: large;
+    color: #03A64A;
+}
+
+#kpis {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px; /* Padding adecuado para espaciado */
+}
+
+.kpi {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    width: 24%;
+    box-shadow: 0 10px 10px rgba(0.1, 0, 0, 0.1); /* Sombra sutil para profundidad */
+}
+
+#daily_sale {
+    font-size: 24px;
+    margin: 0;
+    color: #03A64A;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 14px;
+    }
+}

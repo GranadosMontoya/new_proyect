@@ -1,0 +1,102 @@
+#nav_principal {
+    background-color: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+/* Icono del logo */
+#icon-gramon {
+    width: 180px;
+    max-width: 100%;
+}
+
+/* Icono de usuario */
+.user-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#logout_boton:hover {
+    background-color: #c82333 !important; /* Rojo oscuro */
+    color: white !important; /* Letras blancas */
+}
+
+.navbar {
+    position: relative; /* Necesario para posicionamiento absoluto del logo */
+}
+
+/* Contenedor del logo centrado */
+.navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Botón de menú hamburguesa */
+.btn-menu {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+    color: #03A64A;
+}
+
+/* Efecto al pasar el mouse */
+.btn-menu:hover {
+    transform: scale(1.2); /* Lo agranda un poco */
+    color: #03A64A; /* Cambia de color (puedes modificarlo) */
+}
+
+/* Efecto de clic: pequeña reducción antes de volver a la normalidad */
+.btn-menu:active {
+    transform: scale(0.9);
+}
+
+/* Estilos generales del enlace */
+.custom-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Espacio entre icono y texto */
+    font-size: 16px;
+    color: #025815; /* Color normal */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    text-decoration: none; /* Evita subrayados */
+}
+
+/* Tamaño y animación del icono */
+.custom-nav-link i {
+    font-size: 20px; /* Aumenta el tamaño del icono */
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Efecto en hover */
+.custom-nav-link:hover,
+.custom-nav-link:focus-visible { 
+    color: #196F3D; /* Color de texto verde oscuro */
+    background-color: #A9DFBF; /* Verde claro de fondo */
+}
+
+/* Evita cualquier cambio visual al hacer clic */
+.custom-nav-link:focus,
+.custom-nav-link:active {
+    color: #025815 !important; /* Mantiene el color original */
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+.offcanvas-title {
+    font-size: 20px; /* Tamaño más grande */
+    font-weight: bold;
+    color: #03A64A; /* Color principal */
+    text-transform: capitalize; /* Capitaliza cada palabra */
+    transition: transform 0.2s ease-in-out;
+}
