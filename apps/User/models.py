@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.hashers import make_password
+
 
 class User(AbstractUser):
     id = models.IntegerField(primary_key=True, serialize=False, verbose_name='ID')
@@ -10,6 +12,8 @@ class User(AbstractUser):
         self.first_name = self.first_name.title()
         self.last_name = self.last_name.title()
         self.full_name = f"{self.first_name} {self.last_name}"
+        if self.password and not self.password.startswith('pbkdf2_'):
+            self.password = make_password(self.password)
         super().save(*args, **kwargs)
 
     def __str__(self):
