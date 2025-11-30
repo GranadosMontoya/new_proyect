@@ -116,3 +116,6 @@
   transform: scale(1.05); /* Pequeño efecto de crecimiento */
 }
 
+.scroll-section {
+    scroll-margin-top: 20vh;
+}

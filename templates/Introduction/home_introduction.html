@@ -30,26 +30,26 @@
                 <nav class="navbar bg-transparent px-3">
                     <a href="javascript:void(0)" onclick="window.location.reload();">
                         {% if cover.logo %}
-                        <img src="{{ cover.logo.url }}" alt="Logo" width="{{cover.width}}" height="{{cover.height}}">
+                            <img src="{{ cover.logo.url }}" alt="Logo" width="{{cover.width}}" height="{{cover.height}}">
                         {% else %}
-                        <img src="{% static 'img/icon-gramon.png' %}" alt="Logo" width="165" height="55">
+                            <img src="{% static 'img/icon-gramon.png' %}" alt="Logo" width="165" height="55">
                         {% endif %}
                     </a>
                     <ul class="navbar-nav me-auto mb-2 mb-md-0 nav nav-pills d-none d-md-flex">
                         {% if cover.title1 %}
-                        <li class="nav-item">
-                            <a class="nav-link rounded-pill px-3 py-2" href="#{{ cover.title1 }}">{{ cover.title1 }}</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link rounded-pill px-3 py-2" href="#s1-{{ cover.pk }}">{{ cover.title1 }}</a>
+                            </li>
                         {% endif %}
                         {% if cover.title2 %}
-                        <li class="nav-item">
-                            <a class="nav-link rounded-pill px-3 py-2" href="#{{ cover.title2 }}">{{ cover.title2 }}</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link rounded-pill px-3 py-2" href="#s2-{{ cover.pk }}">{{ cover.title2 }}</a>
+                            </li>
                         {% endif %}
                         {% if cover.title3 %}
-                        <li class="nav-item">
-                            <a class="nav-link rounded-pill px-3 py-2" href="#{{ cover.title3 }}">{{ cover.title3 }}</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link rounded-pill px-3 py-2" href="#s3-{{ cover.pk }}">{{ cover.title3 }}</a>
+                            </li>
                         {% endif %}
                     </ul>
                 </nav>
@@ -122,72 +122,87 @@
             </button>
         </div>
 
-        <div data-bs-spy="scroll" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true"
-            class="scrollspy-example bg-body-tertiary p-3 rounded-2 container marketing" tabindex="0">
-            <div class="row" id="{{cover.title1}}" style="padding-top: 10%;">
+        <div class="bg-body-tertiary p-3 rounded-2 container marketing"
+             data-bs-spy="scroll" data-bs-target="#navbarCollapse">
+
+            <!-- TARJETAS -->
+            <div class="row pt-5">
                 <div class="col-lg-4 text-center">
-                    <img src="{% if cover.tarjeta_1_imagen %}{{ cover.tarjeta_1_imagen.url}}{% else %}{{ cover.imag_default.url}}{% endif %}" class="rounded-circle img-fluid" width="140" height="140"alt="Imagen">
-                    <p>{{cover.text1}}</p>
+                    <img src="{% if cover.tarjeta_1_imagen %}{{ cover.tarjeta_1_imagen.url }}{% else %}{{ cover.imag_default.url }}{% endif %}"
+                        class="rounded-circle img-fluid" width="140" height="140" alt="Imagen">
+                    <p>{{ cover.text1 }}</p>
                 </div>
 
                 <div class="col-lg-4 text-center">
-                    <img src="{% if cover.tarjeta_2_imagen %}{{ cover.tarjeta_2_imagen.url}}{% else %}{{ cover.imag_default.url}}{% endif %}" class="rounded-circle img-fluid" width="140" height="140"alt="Imagen">
-                    <p>{{cover.text2}}</p>
+                    <img src="{% if cover.tarjeta_2_imagen %}{{ cover.tarjeta_2_imagen.url }}{% else %}{{ cover.imag_default.url }}{% endif %}"
+                        class="rounded-circle img-fluid" width="140" height="140" alt="Imagen">
+                    <p>{{ cover.text2 }}</p>
                 </div>
 
                 <div class="col-lg-4 text-center">
-                    <img src="{% if cover.tarjeta_3_imagen %}{{ cover.tarjeta_3_imagen.url}}{% else %}{{ cover.imag_default.url}}{% endif %}" class="rounded-circle img-fluid" width="140" height="140"alt="Imagen">
-                    <p>{{cover.text3}}</p>
+                    <img src="{% if cover.tarjeta_3_imagen %}{{ cover.tarjeta_3_imagen.url }}{% else %}{{ cover.imag_default.url }}{% endif %}"
+                        class="rounded-circle img-fluid" width="140" height="140" alt="Imagen">
+                    <p>{{ cover.text3 }}</p>
                 </div>
             </div>
 
-
-            <!-- START THE FEATURETTES -->
-
+            <!-- SECCIÓN 1 -->
             <hr class="featurette-divider">
-
-            <div class="row featurette">
+            <div class="row featurette scroll-section" id="s1-{{ cover.pk }}">
                 <div class="col-md-7">
-                    <h2 class="featurette-heading fw-normal lh-1">{{cover.presentation1_text_primary}}<span
-                            class="text-body-secondary">{{cover.presentation1_text_secundary}}</span></h2>
-                    <p class="lead">{{cover.presentation1_text}}</p>
+                    <h2 class="featurette-heading fw-normal lh-1">
+                        {{ cover.presentation1_text_primary }}
+                        <span class="text-body-secondary">{{ cover.presentation1_text_secundary }}</span>
+                    </h2>
+                    <p class="lead">{{ cover.presentation1_text }}</p>
                 </div>
                 <div class="col-md-5">
-                    <img src="{% if cover.presentation1_image %}{{cover.presentation1_image.url}}{% else %}{{ cover.imag_default.url}}{% endif %}" class="featurette-image img-fluid mx-auto rounded shadow"
+                    <img src="{% if cover.presentation1_image %}{{ cover.presentation1_image.url }}{% else %}{{ cover.imag_default.url }}{% endif %}"
+                        class="featurette-image img-fluid mx-auto rounded shadow"
                         width="500" height="500" alt="Descripción de la imagen">
                 </div>
             </div>
 
+            <!-- SECCIÓN 2 -->
             <hr class="featurette-divider">
+            <div class="row featurette scroll-section" id="s2-{{ cover.pk }}">
 
-            <div class="row featurette">
                 <div class="col-md-7 order-md-2">
-                    <h2 class="featurette-heading fw-normal lh-1">{{cover.presentation2_text_primary}}<span
-                            class="text-body-secondary">{{cover.presentation2_text_secundary}}</span></h2>
-                    <p class="lead">{{cover.presentation2_text}}</p>
+                    <h2 class="featurette-heading fw-normal lh-1">
+                        {{ cover.presentation2_text_primary }}
+                        <span class="text-body-secondary">{{ cover.presentation2_text_secundary }}</span>
+                    </h2>
+                    <p class="lead">{{ cover.presentation2_text }}</p>
                 </div>
                 <div class="col-md-5 order-md-1">
-                    <img src="{% if cover.presentation2_image %}{{cover.presentation2_image.url}}{% else %}{{ cover.imag_default.url}}{% endif %}" class="featurette-image img-fluid mx-auto rounded shadow"
+                    <img src="{% if cover.presentation2_image %}{{ cover.presentation2_image.url }}{% else %}{{ cover.imag_default.url }}{% endif %}"
+                        class="featurette-image img-fluid mx-auto rounded shadow"
                         width="500" height="500" alt="Descripción de la imagen">
                 </div>
             </div>
 
+            <!-- SECCIÓN 3 -->
             <hr class="featurette-divider">
-
-            <div class="row featurette">
+            <div class="row featurette scroll-section" id="s3-{{ cover.pk }}">
                 <div class="col-md-7">
-                    <h2 class="featurette-heading fw-normal lh-1">{{cover.presentation3_text_primary}}<span
-                            class="text-body-secondary">{{cover.presentation3_text_secundary}}</span></h2>
-                    <p class="lead">{{cover.presentation3_text}}</p>
+                    <h2 class="featurette-heading fw-normal lh-1">
+                        {{ cover.presentation3_text_primary }}
+                        <span class="text-body-secondary">{{ cover.presentation3_text_secundary }}</span>
+                    </h2>
+                    <p class="lead">{{ cover.presentation3_text }}</p>
                 </div>
                 <div class="col-md-5">
-                    <img src="{% if cover.presentation3_image %}{{ cover.presentation3_image.url}}{% else %}{{ cover.imag_default.url}}{% endif %}" class="featurette-image img-fluid mx-auto rounded shadow"
+                    <img src="{% if cover.presentation3_image %}{{ cover.presentation3_image.url }}{% else %}{{ cover.imag_default.url }}{% endif %}"
+                        class="featurette-image img-fluid mx-auto rounded shadow"
                         width="500" height="500" alt="Descripción de la imagen">
                 </div>
             </div>
 
             <hr class="featurette-divider">
+
         </div>
+
+
 
         <!-- FOOTER -->
         <footer class="container">
