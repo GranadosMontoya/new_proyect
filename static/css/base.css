@@ -1,5 +1,6 @@
 body{
     background-color: #F2F4F4;
+    padding-top: 70px; /* Ajusta según el alto del navbar */
 }
 
 /* Pantalla de carga */

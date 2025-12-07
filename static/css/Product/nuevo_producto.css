@@ -52,3 +52,9 @@ h2 {
     background-color: #028a3a;
     border-color: #028a3a;
 }
+
+.titulo-pagina {
+    font-weight: 600;   /* Más grueso pero no exagerado */
+    font-size: 2rem;    /* Tamaño adecuado */
+    letter-spacing: 0.5px;
+}

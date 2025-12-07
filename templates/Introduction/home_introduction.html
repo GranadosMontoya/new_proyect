@@ -12,7 +12,8 @@
     <title>Gramon</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
     <link rel="stylesheet" href="{% static 'css/introduction/home_introduction.css' %}">
     <link rel="stylesheet" href="{% static 'css/introduction/carousel.css' %}">
     <!-- Agregar Bootstrap Icons -->
@@ -38,17 +39,17 @@
                     <ul class="navbar-nav me-auto mb-2 mb-md-0 nav nav-pills d-none d-md-flex">
                         {% if cover.title1 %}
                             <li class="nav-item">
-                                <a class="nav-link rounded-pill px-3 py-2" href="#s1-{{ cover.pk }}">{{ cover.title1 }}</a>
+                                <a class="nav-link rounded-pill px-3 py-2" href="#s1">{{ cover.title1 }}</a>
                             </li>
                         {% endif %}
                         {% if cover.title2 %}
                             <li class="nav-item">
-                                <a class="nav-link rounded-pill px-3 py-2" href="#s2-{{ cover.pk }}">{{ cover.title2 }}</a>
+                                <a class="nav-link rounded-pill px-3 py-2" href="#s2">{{ cover.title2 }}</a>
                             </li>
                         {% endif %}
                         {% if cover.title3 %}
                             <li class="nav-item">
-                                <a class="nav-link rounded-pill px-3 py-2" href="#s3-{{ cover.pk }}">{{ cover.title3 }}</a>
+                                <a class="nav-link rounded-pill px-3 py-2" href="#s3">{{ cover.title3 }}</a>
                             </li>
                         {% endif %}
                     </ul>
@@ -126,7 +127,8 @@
              data-bs-spy="scroll" data-bs-target="#navbarCollapse">
 
             <!-- TARJETAS -->
-            <div class="row pt-5">
+            <div class="row pt-5 mt-5">
+                
                 <div class="col-lg-4 text-center">
                     <img src="{% if cover.tarjeta_1_imagen %}{{ cover.tarjeta_1_imagen.url }}{% else %}{{ cover.imag_default.url }}{% endif %}"
                         class="rounded-circle img-fluid" width="140" height="140" alt="Imagen">
@@ -148,7 +150,7 @@
 
             <!-- SECCIÓN 1 -->
             <hr class="featurette-divider">
-            <div class="row featurette scroll-section" id="s1-{{ cover.pk }}">
+            <div class="row featurette scroll-section" id="s1">
                 <div class="col-md-7">
                     <h2 class="featurette-heading fw-normal lh-1">
                         {{ cover.presentation1_text_primary }}
@@ -165,7 +167,7 @@
 
             <!-- SECCIÓN 2 -->
             <hr class="featurette-divider">
-            <div class="row featurette scroll-section" id="s2-{{ cover.pk }}">
+            <div class="row featurette scroll-section" id="s2">
 
                 <div class="col-md-7 order-md-2">
                     <h2 class="featurette-heading fw-normal lh-1">
@@ -183,7 +185,7 @@
 
             <!-- SECCIÓN 3 -->
             <hr class="featurette-divider">
-            <div class="row featurette scroll-section" id="s3-{{ cover.pk }}">
+            <div class="row featurette scroll-section" id="s3">
                 <div class="col-md-7">
                     <h2 class="featurette-heading fw-normal lh-1">
                         {{ cover.presentation3_text_primary }}
@@ -210,7 +212,10 @@
             <p>&copy; 2025 Gramon, Inc. &middot;
         </footer>
     </main>
-    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script 
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+    </script>
+
     {% endfor %}
 </body>
 

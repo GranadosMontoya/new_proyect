@@ -25,9 +25,11 @@
     color: white !important; /* Letras blancas */
 }
 
-.navbar {
-    position: relative; /* Necesario para posicionamiento absoluto del logo */
+/* .navbar {
+    position: relative; /* Necesario para posicionamiento absoluto del logo 
 }
+*/
+ 
 
 /* Contenedor del logo centrado */
 .navbar-center {
