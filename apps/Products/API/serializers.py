@@ -19,4 +19,7 @@ class ProductoSerializer(serializers.ModelSerializer):
 class CategoriaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categoria
-        fields = ['id', 'nombre']
+        fields = ['id', 'nombre', 'descripcion']
+        extra_kwargs = {
+            'descripcion': {'required': False, 'allow_null': True, 'allow_blank': True}
+        }

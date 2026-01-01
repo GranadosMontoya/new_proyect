@@ -1,9 +1,8 @@
 
 from django.urls import path, re_path
-from apps.Products.views import NuevoProducto
+from apps.Supplier.views import nuevoproveedor
 
-app_name = 'Supplier_app'
+app_name = 'Proveedores_app'
 urlpatterns = [
-    # path('Nuevo_Producto', NuevoProducto, name='nuevo_producto'),
+    path('Nuevo_Proveedor', nuevoproveedor, name='nuevo_proveedor'),
 ]
- 

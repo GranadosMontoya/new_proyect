@@ -63,6 +63,22 @@
                         </ul>
                     </div>
                 </li>
+                <li>
+                    <a class="nav-link custom-nav-link" data-bs-toggle="collapse" href="#options_supplier" role="button" aria-expanded="false">
+                        <i class="bi bi-people-fill"></i>             
+                        Proveedores
+                    </a>
+                    <div class="collapse" id="options_supplier" style="padding-left: 30px; text-align: left;">
+                        <ul class="nav nav-pills flex-column mb-auto">
+                            <li>
+                                <a type="button" class="nav-link text-decoration-none custom-nav-link" href="{% url 'Proveedores_app:nuevo_proveedor' %}">
+                                    <i class="bi bi-database-add"></i>
+                                    Registrar proveedor
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             </ul>
           </div>
         </div>

@@ -1,90 +1,173 @@
-$(document).ready(function () {
-    $.ajax({
-        url: '/api/categorias/',  // Asegúrate que este sea el endpoint correcto
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            const $categoria = $('#categoria');
-            $categoria.empty();  // Limpiamos cualquier opción anterior
-            $categoria.append('<option disabled selected>Seleccione una categoría</option>');
-            data.forEach(categoria => {
-                $categoria.append(
-                    $('<option>', {
-                        value: categoria.id,
-                        text: categoria.nombre
-                    })
-                );
-            });
-        },
-        error: function (xhr, status, error) {
-            console.error('Error al cargar las categorías:', error);
-        }
-    });
-
-    $.ajax({
-        url: '/api/proveedor/',  // Asegúrate que este sea el endpoint correcto
-        type: 'GET',
-        dataType: 'json',
-        success: function (data) {
-            const $proveedor = $('#proveedor');
-            $proveedor.empty();  // Limpiamos cualquier opción anterior
-            $proveedor.append('<option disabled selected>Seleccione una proveedor</option>');
-            data.forEach(proveedor => {
-                $proveedor.append(
-                    $('<option>', {
-                        value: proveedor.id,
-                        text: proveedor.nombre
-                    })
-                );
-            });
-        },
-        error: function (xhr, status, error) {
-            console.error('Error al cargar los proveedores:', error);
-        }
-    });
-    
+// ======================================================
+// PUNTO DE ENTRADA
+// ======================================================
+document.addEventListener('DOMContentLoaded', function () {
+    cargarCategorias();
+    cargarProveedores();
+    inicializarFormularioCategoria();
+    inicializarFormularioProducto();
 });
 
-$("#product_form").submit(function(event) {
-    event.preventDefault();
 
-    let formData = new FormData();
-    formData.append("nombre", $("#nombre").val());
-    formData.append("sku", $("#sku").val());
-    formData.append("codigo_barras", $("#codigo_barras").val());
-    formData.append("precio_base", $("#precio_base").val());
-    formData.append("precio_publico", $("#precio_publico").val());
-    formData.append("cantidad", $("#cantidad").val());
-    formData.append("stock_minimo", $("#stock_minimo").val());
-    formData.append("categoria", $("#categoria").val());
-    formData.append("proveedor", $("#proveedor").val());
-    formData.append("fecha_vencimiento", $("#fecha_vencimiento").val());
-    formData.append("unidad_medida", $("#unidad_medida").val());
-    formData.append("control_stock", $("#control_stock").val());
-    formData.append("impuesto", $("#impuesto").val());
-    formData.append("descuento", $("#descuento").val());
-    formData.append("estado", $("#estado").val());
-    var imageInput = $('#imagen')[0];
-    if (imageInput.files.length > 0) {
-        formData.append('imagen', imageInput.files[0]);
+// ======================================================
+// FORMULARIO: CREAR CATEGORÍA (MODAL)
+// ======================================================
+function inicializarFormularioCategoria() {
+    const form = document.getElementById('formCategoria');
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const nombre = document.getElementById('nombre_categoria').value.trim();
+        const descripcion = document.getElementById('descripcion_categoria').value;
+
+        if (!nombre) {
+            alert('La categoría es obligatoria');
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/categorias/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({
+                    nombre: nombre,
+                    descripcion: descripcion
+                })
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw error;
+            }
+
+            const data = await response.json();
+
+            agregarCategoriaAlSelect(data);
+            cerrarModalCategoria();
+            form.reset();
+
+        } catch (error) {
+            console.error('Error al crear categoría:', error);
+        }
+    });
+}
+
+
+// ======================================================
+// FORMULARIO: CREAR PRODUCTO (PRINCIPAL)
+// ======================================================
+function inicializarFormularioProducto() {
+    const form = document.getElementById('product_form');
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch('/api/products/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken
+                },
+                body: formData
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw error;
+            }
+
+            const data = await response.json();
+            console.log('Producto creado correctamente:', data);
+
+            form.reset();
+
+        } catch (error) {
+            console.error('Error al crear producto:', error);
+        }
+    });
+}
+
+
+// ======================================================
+// CARGAR CATEGORÍAS (GET)
+// ======================================================
+async function cargarCategorias() {
+    try {
+        const response = await fetch('/api/categorias/');
+
+        if (!response.ok) {
+            throw new Error('Error al cargar categorías');
+        }
+
+        const data = await response.json();
+        const select = document.getElementById('categoria');
+
+        select.innerHTML = '<option disabled selected>Seleccione una categoría</option>';
+
+        data.forEach(categoria => {
+            const option = document.createElement('option');
+            option.value = categoria.id;
+            option.textContent = categoria.nombre;
+            select.appendChild(option);
+        });
+
+    } catch (error) {
+        console.error('Error al cargar categorías:', error);
     }
+}
 
 
-    $.ajax({
-        url: '/api/products/',
-        method: 'POST',
-        headers: { 'X-CSRFToken': getCSRFToken() },
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(response) {
-            console.log('Producto creado correctamente:', response);
-            // Opcional: limpiar formulario
-            $("#product_form")[0].reset();
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            console.error('Error al crear producto:', textStatus, errorThrown);
+// ======================================================
+// CARGAR PROVEEDORES (GET)
+// ======================================================
+async function cargarProveedores() {
+    try {
+        const response = await fetch('/api/proveedor/');
+
+        if (!response.ok) {
+            throw new Error('Error al cargar proveedores');
         }
-    });
-});
 
+        const data = await response.json();
+        const select = document.getElementById('proveedor');
+
+        select.innerHTML = '<option disabled selected>Seleccione un proveedor</option>';
+
+        data.forEach(proveedor => {
+            const option = document.createElement('option');
+            option.value = proveedor.id;
+            option.textContent = proveedor.nombre;
+            select.appendChild(option);
+        });
+
+    } catch (error) {
+        console.error('Error al cargar proveedores:', error);
+    }
+}
+
+
+// ======================================================
+// HELPERS
+// ======================================================
+function agregarCategoriaAlSelect(categoria) {
+    const select = document.getElementById('categoria');
+
+    const option = document.createElement('option');
+    option.value = categoria.id;
+    option.textContent = categoria.nombre;
+    option.selected = true;
+
+    select.appendChild(option);
+}
+
+function cerrarModalCategoria() {
+    const modalElement = document.getElementById('modalCategoria');
+    const modal = bootstrap.Modal.getInstance(modalElement);
+    modal.hide();
+}

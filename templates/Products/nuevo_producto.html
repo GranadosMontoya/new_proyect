@@ -15,7 +15,7 @@
     <form class="card p-4" id="product_form" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre del Producto</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ej: Butifarra" required>
+            <input type="text" class="form-control" id="nombre" placeholder="Ej: Producto1" required>
         </div>
     
         <div class="row">
@@ -59,9 +59,17 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="categoria" class="form-label">Categoría</label>
-                <select class="form-select" id="categoria" required>
-                    <!-- Opciones cargadas vía AJAX -->
-                </select>
+                <div class="input-group">
+
+                    <select class="form-select" id="categoria" required>
+                        <!-- Opciones cargadas vía AJAX -->
+                    </select>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modalCategoria" id="add_category_btn" title="Agregar categoría">
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
+                </div>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="proveedor" class="form-label">Proveedor</label>
@@ -85,7 +93,6 @@
                     <option value="kg">Kilogramos</option>
                     <option value="lt">Litros</option>
                     <option value="gr">Gramos</option>
-                    <!-- Agrega más según tu modelo -->
                 </select>
             </div>
     
@@ -133,9 +140,80 @@
     </form>
     
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalCategoria" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content border-0 rounded-4 shadow">
+
+            <form id="formCategoria">
+
+                <!-- Header -->
+                <div class="modal-header border-0 pb-0">
+                    <div>
+                        <h5 class="modal-title fw-bold text-success mb-1">
+                            Crear nueva categoría
+                        </h5>
+                        <small class="text-muted">
+                            Define una categoría para organizar tus productos
+                        </small>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Body -->
+                <div class="modal-body pt-4">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            Nombre de la categoría
+                        </label>
+                        <input
+                            type="text"
+                            name="nombre_categoria"
+                            id="nombre_categoria"
+                            class="form-control form-control-lg"
+                            placeholder="Ej: Lácteos"
+                            required
+                        >
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">
+                            Descripción
+                        </label>
+                        <textarea
+                            id="descripcion_categoria"
+                            name="descripcion"
+                            class="form-control"
+                            rows="3"
+                            placeholder="Descripción breve (opcional)"
+                        ></textarea>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer border-0">
+                    <button type="button"
+                            class="btn btn-outline-secondary"
+                            data-bs-dismiss="modal">
+                        Cancelar
+                    </button>
+
+                    <button type="submit" class="btn btn-success">
+                        Guardar categoría
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
 {% endblock content %}
 
+
 {% block script %}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{% static 'js/Product/nuevo_producto.js' %}"></script>
 {% endblock script %}
