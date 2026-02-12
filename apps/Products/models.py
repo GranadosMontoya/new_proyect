@@ -11,6 +11,11 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+    def save(self, *args, **kwargs):
+        # Normalizar el nombre a minúsculas para evitar duplicados
+        self.nombre = self.nombre.lower().strip()
+        super().save(*args, **kwargs)
 
 class Producto(models.Model):
     sku = models.CharField(max_length=20, unique=True, blank=True, null=True)

@@ -4,6 +4,8 @@ from apps.Products.models import Producto, Categoria
 from .serializers import ProductoSerializer, CategoriaSerializer
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.exceptions import ValidationError
+from django.db import IntegrityError
 import traceback
 
 class ProductsApi(ModelViewSet):
@@ -49,3 +51,22 @@ class ProductsApi(ModelViewSet):
 class CategoriaApi(ModelViewSet):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
+    
+    def create(self, request, *args, **kwargs):
+        try:
+            response = super().create(request, *args, **kwargs)
+            return Response({
+                'message': 'Categoría creada exitosamente',
+                'data': response.data
+            }, status=status.HTTP_201_CREATED)
+        except ValidationError as e:
+            # Errores de validación del serializer
+            return Response({
+                'error': e.detail
+            }, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            print("Error al crear categoría:")
+            print(traceback.format_exc())
+            return Response({
+                'error': str(e)
+            }, status=status.HTTP_400_BAD_REQUEST)
