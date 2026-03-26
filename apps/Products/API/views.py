@@ -13,10 +13,6 @@ class ProductsApi(ModelViewSet):
     serializer_class = ProductoSerializer
     permission_classes = [IsAuthenticated]  # Asegura que solo usuarios logueados accedan
 
-    def perform_create(self, serializer):
-        request_user = self.request.user
-        serializer.save(usuario_ultimo_movimiento=request_user)
-
     def perform_update(self, serializer):
         request_user = self.request.user
         serializer.save(usuario_ultimo_movimiento=request_user)

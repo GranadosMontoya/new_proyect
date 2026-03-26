@@ -46,3 +46,38 @@ function getCookie(name) {
   return cookieValue;
 }
 var csrfToken = getCookie('csrftoken');
+
+// Mostrar Toasts
+function mostrarToast(mensaje, tipo) {
+    const contenedor = document.getElementById('contenedorToasts')
+
+    const clase = tipo === 'success' ? 'toast-success' : tipo === 'error'   ? 'toast-error' :
+  ''
+
+    const toastHTML = `
+        <div class="toast align-items-center ${clase}" role="alert">
+        <div class="d-flex">
+            <div class="toast-body">
+            ${mensaje}
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+        </div>
+    `
+
+    // Crear elemento
+    const wrapper = document.createElement('div')
+    wrapper.innerHTML = toastHTML
+
+    const toastElement = wrapper.firstElementChild
+    contenedor.appendChild(toastElement)
+
+    // Inicializar y mostrar
+    const toast = new bootstrap.Toast(toastElement)
+    toast.show()
+
+    // Eliminar del DOM cuando desaparezca
+    toastElement.addEventListener('hidden.bs.toast', () => {
+        toastElement.remove()
+    })
+}

@@ -18,19 +18,19 @@ class Categoria(models.Model):
         super().save(*args, **kwargs)
 
 class Producto(models.Model):
+    nombre = models.CharField(max_length=255)
     sku = models.CharField(max_length=20, unique=True, blank=True, null=True)
     codigo_barras = models.CharField(max_length=50, unique=True)
-    nombre = models.CharField(max_length=255)
     imagen = models.ImageField(upload_to='products', height_field=None, width_field=None, max_length=None, blank=True , default='logos/default-img.jpg')
-    cantidad = models.PositiveIntegerField(default=0)
     precio_base = models.DecimalField(max_digits=10, decimal_places=2)
     precio_publico = models.DecimalField(max_digits=10, decimal_places=2)
+    cantidad = models.PositiveIntegerField(default=0)
+    stock_minimo = models.PositiveIntegerField(default=0)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     proveedor = models.ForeignKey(Proveedor, on_delete=models.CASCADE)
     fecha_vencimiento = models.DateField(blank=True, null=True)
-    fecha_ingreso = models.DateField(auto_now_add=True)
-    stock_minimo = models.PositiveIntegerField(default=0)
     unidad_medida = models.CharField(max_length=20, choices=[('kg', 'Kilogramos'), ('lt', 'Litros'), ('unidad', 'Unidad')])
+    perecedero = models.BooleanField(default=True)
     impuesto = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
     descuento = models.DecimalField(max_digits=5, decimal_places=2, default=0.00)
     estado = models.CharField(
@@ -38,8 +38,9 @@ class Producto(models.Model):
         choices=[('activo', 'Activo'), ('agotado', 'Agotado'), ('descontinuado', 'Descontinuado')],
         default='activo'
     )
-    control_stock = models.BooleanField(default=True)
     motivo_actualizacion = models.TextField(blank=True, null=True)
+
+    fecha_ingreso = models.DateField(auto_now_add=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)
     usuario_ultimo_movimiento = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)

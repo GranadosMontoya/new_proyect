@@ -9,50 +9,49 @@
 {% block content %}
 <div class="container mt-5" style="max-width: 900px;">
 
-
     <h2 class="text-center titulo-pagina">Registrar Nuevo Producto</h2>
 
     <form class="card p-4" id="product_form" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre del Producto</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ej: Producto1" required>
+            <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Ej: Producto1" required>
         </div>
     
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="sku" class="form-label">SKU</label>
-                <input type="text" class="form-control" id="sku" placeholder="Código SKU">
+                <input type="text" name="sku" class="form-control" id="sku" placeholder="Código SKU">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="codigo_barras" class="form-label">Código de Barras</label>
-                <input type="text" class="form-control" id="codigo_barras" placeholder="Código de Barras">
+                <input type="text" name="codigo_barras" class="form-control" id="codigo_barras" placeholder="Código de Barras">
             </div>
         </div>
     
         <div class="mb-3">
             <label for="imagen" class="form-label">Imagen del Producto</label>
-            <input type="file" class="form-control" id="imagen" accept="image/*">
+            <input type="file" name="imagen" class="form-control" id="imagen" accept="image/*">
         </div>
     
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="precio_base" class="form-label">Precio Base</label>
-                <input type="number" class="form-control" id="precio_base" placeholder="Ej: 5000" min="0" required>
+                <input type="number" name="precio_base" class="form-control" id="precio_base" placeholder="Ej: 5000" min="0" required>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="precio_publico" class="form-label">Precio Público</label>
-                <input type="number" class="form-control" id="precio_publico" placeholder="Ej: 8000" min="0" required>
+                <input type="number" name="precio_publico" class="form-control" id="precio_publico" placeholder="Ej: 8000" min="0" required>
             </div>
         </div>
     
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="cantidad" class="form-label">Cantidad</label>
-                <input type="number" class="form-control" id="cantidad" placeholder="Ej: 50" min="0">
+                <input type="number" name="cantidad" class="form-control" id="cantidad" placeholder="Ej: 50" min="0">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="stock_minimo" class="form-label">Stock Mínimo</label>
-                <input type="number" class="form-control" id="stock_minimo" placeholder="Ej: 10" min="0">
+                <input type="number" name="stock_minimo" class="form-control" id="stock_minimo" placeholder="Ej: 10" min="0">
             </div>
         </div>
     
@@ -61,7 +60,7 @@
                 <label for="categoria" class="form-label">Categoría</label>
                 <div class="input-group">
 
-                    <select class="form-select" id="categoria" required>
+                    <select class="form-select" name="categoria" id="categoria" required>
                         <!-- Opciones cargadas vía AJAX -->
                     </select>
 
@@ -73,7 +72,7 @@
             </div>
             <div class="col-md-6 mb-3">
                 <label for="proveedor" class="form-label">Proveedor</label>
-                <select class="form-select" id="proveedor" required>
+                <select class="form-select" name="proveedor" id="proveedor" required>
                     <!-- Opciones cargadas vía AJAX -->
                 </select>
             </div>
@@ -81,13 +80,13 @@
     
         <div class="mb-3">
             <label for="fecha_vencimiento" class="form-label">Fecha de Vencimiento</label>
-            <input type="date" class="form-control" id="fecha_vencimiento">
+            <input type="date" name="fecha_vencimiento" class="form-control" id="fecha_vencimiento">
         </div>
     
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="unidad_medida" class="form-label">Unidad de Medida</label>
-                <select class="form-select" id="unidad_medida" required>
+                <select class="form-select" name="unidad_medida" id="unidad_medida" required>
                     <option value="" disabled selected>Seleccione una unidad</option>
                     <option value="unidad">Unidad</option>
                     <option value="kg">Kilogramos</option>
@@ -97,9 +96,9 @@
             </div>
     
             <div class="col-md-6 mb-3">
-                <label for="control_stock" class="form-label">Controlar Stock</label>
-                <select class="form-select" id="control_stock" required>
-                    <option value="" disabled selected>¿Controlar stock?</option>
+                <label for="perecedero" class="form-label">¿Es perecedero?</label>
+                <select class="form-select" name="perecedero" id="perecedero" required>
+                    <option value="" disabled selected>Seleccione una opción</option>
                     <option value="true">Sí</option>
                     <option value="false">No</option>
                 </select>
@@ -109,17 +108,17 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="impuesto" class="form-label">Impuesto (%)</label>
-                <input type="number" class="form-control" id="impuesto" placeholder="Ej: 5.00" step="0.01" min="0">
+                <input type="number" name="impuesto" class="form-control" id="impuesto" placeholder="Ej: 5.00" step="0.01" min="0">
             </div>
             <div class="col-md-6 mb-3">
                 <label for="descuento" class="form-label">Descuento (%)</label>
-                <input type="number" class="form-control" id="descuento" placeholder="Ej: 10.00" step="0.01" min="0">
+                <input type="number" name="descuento" class="form-control" id="descuento" placeholder="Ej: 10.00" step="0.01" min="0">
             </div>
         </div>
     
         <div class="mb-3">
             <label for="estado" class="form-label">Estado del Producto</label>
-            <select class="form-select" id="estado" required>
+            <select class="form-select" name="estado" id="estado" required>
                 <option value="" disabled selected>Seleccione un estado</option>
                 <option value="activo">Activo</option>
                 <option value="agotado">Agotado</option>
@@ -129,7 +128,7 @@
     
         <div class="mb-3">
             <label for="motivo_actualizacion" class="form-label">Motivo de la Actualización</label>
-            <textarea class="form-control" id="motivo_actualizacion" placeholder="Motivo del cambio en el producto..." rows="2"></textarea>
+            <textarea name="motivo_actualizacion" class="form-control" id="motivo_actualizacion" placeholder="Motivo del cambio en el producto..." rows="2"></textarea>
         </div>
     
         <div class="text-center">
@@ -138,11 +137,11 @@
             </button>
         </div>
     </form>
-    
+
 </div>
 
 
-<!-- Modal -->
+<!-- Modal para categorias -->
 <div class="modal fade" id="modalCategoria" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content border-0 rounded-4 shadow">
@@ -211,8 +210,20 @@
     </div>
 </div>
 
-{% endblock content %}
+<!-- TOSTADA -->
+<div id="contenedorToasts" class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="..." class="rounded me-2" alt="...">
+      <strong class="me-auto">Bootstrap</strong>
+      <small class="text-body-secondary">just now</small>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
 
+
+{% endblock content %}
 
 {% block script %}
     <script src="{% static 'js/Product/nuevo_producto.js' %}"></script>

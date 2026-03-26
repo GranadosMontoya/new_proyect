@@ -58,3 +58,40 @@ h2 {
     font-size: 2rem;    /* Tamaño adecuado */
     letter-spacing: 0.5px;
 }
+
+/* Base opcional para todas */
+.toast-custom {
+  border: none;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+}
+
+.toast-success {
+  background-color: #e9f7ef;
+  color: #155724;
+  border-left: 5px solid #198754;
+  box-shadow: 0 0 10px rgba(25, 135, 84, 0.4);
+}
+
+.toast-error {
+  background-color: #fdecea;
+  color: #842029;
+  border-left: 5px solid #dc3545;
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.4);
+}
+
+.toast-success .btn-close {
+  filter: invert(35%) sepia(20%) saturate(500%) hue-rotate(90deg);
+}
+
+.toast-error .btn-close {
+  filter: invert(20%) sepia(80%) saturate(500%) hue-rotate(-10deg);
+}
+
+.toast {
+  transition: all 0.3s ease;
+}
+
+.toast:hover {
+  transform: scale(1.02);
+}

@@ -32,6 +32,7 @@ class CategoriaSerializer(serializers.ModelSerializer):
         queryset = Categoria.objects.filter(nombre=value)
         
         if queryset.exists():
+            print("VALIDANDO NOMBRE")
             raise serializers.ValidationError(
                 f'Una categoría con el nombre "{value}" ya existe.'
             )
